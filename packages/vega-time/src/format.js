@@ -1,6 +1,6 @@
 import {
-  YEAR, QUARTER, MONTH, WEEK, DATE, DAY,
-  HOURS, MINUTES, SECONDS, MILLISECONDS,
+  DATE, DAY, DAYOFYEAR, HOURS, MILLISECONDS, MINUTES,
+  MONTH, QUARTER, SECONDS, WEEK, YEAR,
   timeUnits
 } from './units';
 
@@ -23,6 +23,7 @@ const defaultSpecifiers = {
   [DATE]: '%d ',
   [WEEK]: 'W%U ',
   [DAY]: '%a ',
+  [DAYOFYEAR]: '%j ',
   [HOURS]: '%H:00',
   [MINUTES]: '00:%M',
   [SECONDS]: ':%S',
@@ -30,7 +31,7 @@ const defaultSpecifiers = {
   [`${YEAR}-${MONTH}`]: '%Y-%m ',
   [`${YEAR}-${MONTH}-${DATE}`]: '%Y-%m-%d ',
   [`${HOURS}-${MINUTES}`]: '%H:%M'
-}
+};
 
 export function timeUnitSpecifier(units, specifiers) {
   const s = extend({}, defaultSpecifiers, specifiers),

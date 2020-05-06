@@ -1,7 +1,8 @@
-import {isLogarithmic, Time, UTC} from 'vega-scale';
+import {isLogarithmic} from './scales';
+import {Time, UTC} from './scales/types';
 import {timeFormat, timeInterval, utcFormat, utcInterval} from 'vega-time';
 import {error, isArray, isNumber, isObject, isString, peek, span} from 'vega-util';
-import {format as numberFormat, formatSpecifier} from 'd3-format';
+import {formatSpecifier, format as numberFormat} from 'd3-format';
 
 const defaultFormatter = value => isArray(value)
   ? value.map(v => String(v))
@@ -22,7 +23,10 @@ export function tickCount(scale, count, minStep) {
       count = Math.max(count, scale.bins.length);
     }
     if (minStep != null) {
-      count = Math.min(count, ~~(span(scale.domain()) / minStep) || 1);
+      count = Math.min(
+        count,
+        Math.floor((span(scale.domain()) / minStep) || 1)
+      );
     }
   }
 
@@ -50,9 +54,9 @@ export function tickCount(scale, count, minStep) {
  * @return {Array<*>} - The filtered tick values.
  */
 export function validTicks(scale, ticks, count) {
-  var range = scale.range(),
-      lo = Math.floor(range[0]),
-      hi = Math.ceil(peek(range));
+  let range = scale.range(),
+      lo = range[0],
+      hi = peek(range);
 
   if (lo > hi) {
     range = hi;
@@ -60,15 +64,18 @@ export function validTicks(scale, ticks, count) {
     lo = range;
   }
 
-  ticks = ticks.filter(function(v) {
+  lo = Math.floor(lo);
+  hi = Math.ceil(hi);
+
+  ticks = ticks.filter(v => {
     v = scale(v);
     return lo <= v && v <= hi;
   });
 
   if (count > 0 && ticks.length > 1) {
-    var endpoints = [ticks[0], peek(ticks)];
+    const endpoints = [ticks[0], peek(ticks)];
     while (ticks.length > count && ticks.length >= 3) {
-      ticks = ticks.filter(function(_, i) { return !(i % 2); });
+      ticks = ticks.filter((_, i) => !(i % 2));
     }
     if (ticks.length < 3) {
       ticks = endpoints;
@@ -147,7 +154,7 @@ function variablePrecision(specifier) {
 }
 
 function trimZeroes(format, decimalChar) {
-  return function(x) {
+  return x => {
     var str = format(x),
         dec = str.indexOf(decimalChar),
         idx, end;

@@ -41,29 +41,41 @@ export default function() {
     // defaults for basic mark types
     // each subset accepts mark properties (fill, stroke, etc)
     mark: null,
-    arc: { fill: defaultColor },
-    area: { fill: defaultColor },
+    arc: {
+      fill: defaultColor,
+    },
+    area: {
+      fill: defaultColor,
+    },
     image: null,
     line: {
       stroke: defaultColor,
-      strokeWidth: defaultStrokeWidth
+      strokeWidth: defaultStrokeWidth,
     },
-    path: { stroke: defaultColor },
-    rect: { fill: defaultColor },
-    rule: { stroke: black },
-    shape: { stroke: defaultColor },
+    path: {
+      stroke: defaultColor,
+    },
+    rect: {
+      fill: defaultColor,
+    },
+    rule: {
+      stroke: black,
+    },
+    shape: {
+      stroke: defaultColor,
+    },
     symbol: {
       fill: defaultColor,
-      size: 64
+      size: 64,
     },
     text: {
       fill: black,
       font: defaultFont,
-      fontSize: 11
+      fontSize: 11,
     },
     trail: {
       fill: defaultColor,
-      size: defaultStrokeWidth
+      size: defaultStrokeWidth,
     },
 
     // style definitions

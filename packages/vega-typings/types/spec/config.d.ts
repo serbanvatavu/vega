@@ -84,6 +84,32 @@ export type StrokeJoin = 'miter' | 'round' | 'bevel';
 
 export interface MarkConfig {
   /**
+   * A boolean flag indicating if [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) should be included (SVG output only).
+   * If `false`, the "aria-hidden" attribute will be set on the output SVG element, removing the mark item from the ARIA accessibility tree.
+   */
+  aria?: boolean | SignalRef;
+
+  /**
+   * Sets the type of user interface element of the mark item for [ARIA accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) (SVG output only).
+   * If specified, this property determines the "role" attribute.
+   * Warning: this property is experimental and may be changed in the future.
+   */
+  ariaRole?: string | SignalRef;
+
+  /**
+   * A human-readable, author-localized description for the role of the mark item for [ARIA accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) (SVG output only).
+   * If specified, this property determines the "aria-roledescription" attribute.
+   * Warning: this property is experimental and may be changed in the future.
+   */
+  ariaRoleDescription?: string | SignalRef;
+
+  /**
+   * A text description of the mark item for [ARIA accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) (SVG output only).
+   * If specified, this property determines the ["aria-label" attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute).
+   */
+  description?: string | SignalRef;
+
+  /**
    * Width of the marks.
    */
   width?: number | SignalRef;
@@ -400,39 +426,39 @@ export interface MarkConfig {
   // ---------- Corner Radius: Bar, Tick, Rect ----------
 
   /**
-   * The radius in pixels of rounded rectangle or arc corners.
+   * The radius in pixels of rounded rectangles or arcs' corners.
    *
    * __Default value:__ `0`
    */
-  cornerRadius?: number;
+  cornerRadius?: number | SignalRef;
 
   /**
-   * The radius in pixels of rounded rectangle top right corner.
+   * The radius in pixels of rounded rectangles' top right corner.
    *
    * __Default value:__ `0`
    */
-  cornerRadiusTopLeft?: number;
+  cornerRadiusTopLeft?: number | SignalRef;
 
   /**
-   * The radius in pixels of rounded rectangle top left corner.
+   * The radius in pixels of rounded rectangles' top left corner.
    *
    * __Default value:__ `0`
    */
-  cornerRadiusTopRight?: number;
+  cornerRadiusTopRight?: number | SignalRef;
 
   /**
-   * The radius in pixels of rounded rectangle bottom right corner.
+   * The radius in pixels of rounded rectangles' bottom right corner.
    *
    * __Default value:__ `0`
    */
-  cornerRadiusBottomRight?: number;
+  cornerRadiusBottomRight?: number | SignalRef;
 
   /**
-   * The radius in pixels of rounded rectangle bottom left corner.
+   * The radius in pixels of rounded rectangles' bottom left corner.
    *
    * __Default value:__ `0`
    */
-  cornerRadiusBottomLeft?: number;
+  cornerRadiusBottomLeft?: number | SignalRef;
 }
 
 export type Cursor =

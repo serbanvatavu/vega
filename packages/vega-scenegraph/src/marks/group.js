@@ -1,7 +1,7 @@
 import {hasCornerRadius, rectangle} from '../path/shapes';
 import boundStroke from '../bound/boundStroke';
 import {intersectRect} from '../util/intersect';
-import {visit, pickVisit} from '../util/visit';
+import {pickVisit, visit} from '../util/visit';
 import blend from '../util/canvas/blend';
 import {clipGroup} from '../util/canvas/clip';
 import fill from '../util/canvas/fill';
@@ -28,11 +28,13 @@ function emitRectangle(emit, item) {
 
 function background(emit, item) {
   emit('class', 'background');
+  emit('aria-hidden', true);
   emitRectangle(emit, item);
 }
 
 function foreground(emit, item) {
   emit('class', 'foreground');
+  emit('aria-hidden', true);
   if (item.strokeForeground) {
     emitRectangle(emit, item);
   } else {

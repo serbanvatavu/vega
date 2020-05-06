@@ -1,4 +1,4 @@
-import {Value, Perc, Perc2, zero, one} from './constants';
+import {Perc, Perc2, Value, one, zero} from './constants';
 import guideMark from './guide-mark';
 import {lookup} from './guide-util';
 import {RectMark} from '../marks/marktypes';
@@ -39,5 +39,11 @@ export default function(spec, scale, config, userEncode, dataRef) {
     opacity:     _('gradientOpacity')
   });
 
-  return guideMark(RectMark, LegendBandRole, null, Value, dataRef, encode, userEncode);
+  return guideMark({
+    type: RectMark,
+    role: LegendBandRole,
+    key:  Value,
+    from: dataRef,
+    encode
+  }, userEncode);
 }

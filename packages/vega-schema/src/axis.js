@@ -1,11 +1,11 @@
 import {timeIntervals} from './scale';
 import {
-  numberValue, stringValue, booleanValue, colorValue, alignValue,
-  anchorValue, baselineValue, fontWeightValue, dashArrayValue,
-  booleanOrSignal, arrayOrSignal, numberOrSignal,
-  textOrSignal, booleanOrNumberOrSignal, formatTypeOrSignal,
-  def, enums, object, oneOf, orSignal, ref,
-  booleanType, formatTypeType, numberType, stringType, signalRef
+  alignValue, anchorValue, arrayOrSignal, baselineValue,
+  booleanOrNumberOrSignal, booleanOrSignal, booleanType, booleanValue,
+  colorValue, dashArrayValue, def, enums,
+  fontWeightValue, formatTypeOrSignal, formatTypeType,
+  numberOrSignal, numberType, numberValue, object, oneOf, orSignal,
+  ref, signalRef, stringType, stringValue, textOrSignal
 } from './util';
 
 // types defined elsewhere
@@ -60,6 +60,10 @@ const axis = object({
   values: arrayOrSignal,
   zindex: numberType,
 
+  // ARIA CONFIG
+  aria: booleanType,
+  description: stringType,
+
   // TITLE CONFIG
   title: textOrSignal,
   titlePadding: numberValue,
@@ -80,6 +84,7 @@ const axis = object({
 
   // DOMAIN CONFIG
   domain: booleanType,
+  domainCap: stringValue,
   domainColor: colorValue,
   domainDash: dashArrayValue,
   domainDashOffset: numberValue,
@@ -89,6 +94,7 @@ const axis = object({
   // TICK CONFIG
   ticks: booleanType,
   tickBand: tickBandRef,
+  tickCap: stringValue,
   tickColor: colorValue,
   tickDash: dashArrayValue,
   tickDashOffset: numberValue,
@@ -104,6 +110,7 @@ const axis = object({
   // GRID CONFIG
   grid: booleanType,
   gridScale: stringType,
+  gridCap: stringValue,
   gridColor: colorValue,
   gridDash: dashArrayValue,
   gridDashOffset: numberValue,

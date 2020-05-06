@@ -9,36 +9,44 @@ import {
 } from 'vega-dataflow';
 
 import {
-  selectionTest,
   selectionResolve,
+  selectionTest,
   selectionVisitor
 } from 'vega-selections';
 
 import {
-  random,
-  cumulativeNormal,
   cumulativeLogNormal,
+  cumulativeNormal,
   cumulativeUniform,
-  densityNormal,
   densityLogNormal,
+  densityNormal,
   densityUniform,
-  quantileNormal,
   quantileLogNormal,
+  quantileNormal,
   quantileUniform,
-  sampleNormal,
+  random,
   sampleLogNormal,
+  sampleNormal,
   sampleUniform
 } from 'vega-statistics';
 
 import {
+  dayofyear,
   timeOffset,
   timeSequence,
   timeUnitSpecifier,
   utcOffset,
-  utcSequence
+  utcSequence,
+  utcdayofyear,
+  utcweek,
+  week
 } from 'vega-time';
 
 import {
+  clampRange,
+  extent,
+  flush,
+  inrange,
   isArray,
   isBoolean,
   isDate,
@@ -46,30 +54,26 @@ import {
   isObject,
   isRegExp,
   isString,
+  lerp,
+  pad,
   panLinear,
   panLog,
   panPow,
   panSymlog,
-  zoomLinear,
-  zoomLog,
-  zoomPow,
-  zoomSymlog,
+  peek,
+  quarter,
+  span,
+  stringValue,
   toBoolean,
   toDate,
   toNumber,
   toString,
-  clampRange,
-  extent,
-  flush,
-  inrange,
-  lerp,
-  pad,
-  peek,
-  quarter,
+  truncate,
   utcquarter,
-  span,
-  stringValue,
-  truncate
+  zoomLinear,
+  zoomLog,
+  zoomPow,
+  zoomSymlog
 } from 'vega-util';
 
 import {
@@ -77,15 +81,15 @@ import {
 } from 'd3-array';
 
 import {
-  rgb,
-  lab,
   hcl,
-  hsl
+  hsl,
+  lab,
+  rgb
 } from 'd3-color';
 
 import {
-  luminance,
-  contrast
+  contrast,
+  luminance
 } from './luminance';
 
 import {
@@ -99,15 +103,15 @@ import {
 } from './encode';
 
 import {
-  format,
-  utcFormat,
-  timeFormat,
-  utcParse,
-  timeParse,
-  monthFormat,
-  monthAbbrevFormat,
+  dayAbbrevFormat,
   dayFormat,
-  dayAbbrevFormat
+  format,
+  monthAbbrevFormat,
+  monthFormat,
+  timeFormat,
+  timeParse,
+  utcFormat,
+  utcParse
 } from './format';
 
 import {
@@ -125,9 +129,9 @@ import {
 } from './intersect';
 
 import {
-  warn,
+  debug,
   info,
-  debug
+  warn
 } from './log';
 
 import {
@@ -139,18 +143,18 @@ import {
 } from './modify';
 
 import {
-  pinchDistance,
-  pinchAngle
+  pinchAngle,
+  pinchDistance
 } from './pinch';
 
 import {
-  range,
-  domain,
-  bandwidth,
   bandspace,
+  bandwidth,
   copy,
-  scale,
-  invert
+  domain,
+  invert,
+  range,
+  scale
 } from './scale';
 
 import {
@@ -163,8 +167,8 @@ import {
 } from './shape';
 
 import {
-  treePath,
-  treeAncestors
+  treeAncestors,
+  treePath
 } from './tree';
 
 import {
@@ -241,6 +245,10 @@ export const functionContext = {
   dayAbbrevFormat,
   quarter,
   utcquarter,
+  week,
+  utcweek,
+  dayofyear,
+  utcdayofyear,
   warn,
   info,
   debug,

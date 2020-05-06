@@ -1,4 +1,4 @@
-import {Top, Left, Bottom, Value, zero, one} from './constants';
+import {Bottom, Left, Top, Value, one, zero} from './constants';
 import guideMark from './guide-mark';
 import {lookup} from './guide-util';
 import {RuleMark} from '../marks/marktypes';
@@ -19,6 +19,7 @@ export default function(spec, config, userEncode, dataRef, size, band) {
 
   addEncoders(encode, {
     stroke:           _('tickColor'),
+    strokeCap:        _('tickCap'),
     strokeDash:       _('tickDash'),
     strokeDashOffset: _('tickDashOffset'),
     strokeOpacity:    _('tickOpacity'),
@@ -47,5 +48,11 @@ export default function(spec, config, userEncode, dataRef, size, band) {
     update.y = enter.y = exit.y = tickPos;
   }
 
-  return guideMark(RuleMark, AxisTickRole, null, Value, dataRef, encode, userEncode);
+  return guideMark({
+    type: RuleMark,
+    role: AxisTickRole,
+    key:  Value,
+    from: dataRef,
+    encode
+  }, userEncode);
 }

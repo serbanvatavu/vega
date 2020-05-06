@@ -1,4 +1,4 @@
-import {zero, one} from './constants';
+import {one, zero} from './constants';
 import guideMark from './guide-mark';
 import {lookup} from './guide-util';
 import {RectMark} from '../marks/marktypes';
@@ -49,5 +49,9 @@ export default function(spec, scale, config, userEncode) {
     opacity:     _('gradientOpacity')
   });
 
-  return guideMark(RectMark, LegendGradientRole, null, undefined, undefined, encode, userEncode);
+  return guideMark({
+    type: RectMark,
+    role: LegendGradientRole,
+    encode
+  }, userEncode);
 }
